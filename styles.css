@@ -1,27 +1,347 @@
+/* General Styles */
+
 body {
 
-font-family: 'Roboto', sans-serif;
+font-family: 'Arial', sans-serif;
 
-background-color: #121212;
+margin: 0;
 
-color: white;
+display: flex;
+
+justify-content: center;
+
+align-items: center;
+
+height: 100vh;
+
+background-color: var(--background-color);
+
+color: var(--text-color);
+
+transition: background-color 0.3s ease, color 0.3s ease; /* Theme transition */
 
 }
 
-.hidden { display: none; }
 
-.tabs button {
 
-padding: 10px;
+#calculator-app {
 
-margin: 5px;
+width: 300px;
+
+border-radius: 20px;
+
+padding: 20px;
+
+transition: background-color 0.3s ease, color 0.3s ease; /* Theme transition */
+
+}
+
+
+
+.hidden {
+
+display: none;
+
+}
+
+
+
+/* Light and Dark Mode Variables */
+
+.light-mode {
+
+--background-color: #ffffff;
+
+--text-color: #000000;
+
+--secondary-text-color: #555555;
+
+--btn-bg-color: #f0f0f0;
+
+--btn-text-color: #000000;
+
+--btn-ac-color: #4caf50;
+
+--btn-equal-color: #ff5722;
+
+}
+
+
+
+.dark-mode {
+
+--background-color: #121212;
+
+--text-color: #ffffff;
+
+--secondary-text-color: #aaaaaa;
+
+--btn-bg-color: #333333;
+
+--btn-text-color: #ffffff;
+
+--btn-ac-color: #4caf50;
+
+--btn-equal-color: #ff5722;
+
+}
+
+
+
+/* Theme Toggle */
+
+.theme-toggle {
+
+text-align: right;
+
+margin-bottom: 10px;
+
+}
+
+
+
+.theme-toggle button {
+
+background: none;
 
 border: none;
 
-background-color: #333;
+font-size: 20px;
+
+cursor: pointer;
+
+transition: transform 0.3s ease; /* Rotate on hover */
+
+}
+
+
+
+.theme-toggle button:hover {
+
+transform: rotate(90deg); /* Rotate on hover */
+
+}
+
+
+
+/* Display */
+
+.display {
+
+text-align: right;
+
+margin-bottom: 20px;
+
+padding: 10px;
+
+border-radius: 10px;
+
+background-color: var(--btn-bg-color);
+
+color: var(--text-color);
+
+transition: background-color 0.3s ease, color 0.3s ease; /* Theme transition */
+
+}
+
+
+
+#current-operation {
+
+font-size: 18px;
+
+color: var(--secondary-text-color);
+
+overflow: hidden;
+
+white-space: nowrap;
+
+text-overflow: ellipsis;
+
+transition: color 0.3s ease; /* Theme transition */
+
+}
+
+
+
+#result {
+
+font-size: 36px;
+
+overflow: hidden;
+
+white-space: nowrap;
+
+text-overflow: ellipsis;
+
+transition: font-size 0.3s ease; /* Result transition */
+
+}
+
+
+
+/* Buttons Grid */
+
+.buttons-grid {
+
+display: grid;
+
+grid-template-columns: repeat(4, 1fr);
+
+gap: 10px;
+
+}
+
+
+
+.buttons-grid button {
+
+padding: 15px 0;
+
+font-size: 18px;
+
+border-radius: 50%;
+
+border: none;
+
+background-color: var(--btn-bg-color);
+
+color: var(--btn-text-color);
+
+cursor: pointer;
+
+transition: transform 0.2s ease, background-color 0.3s ease, color 0.3s ease; /* Button press effect and theme transition */
+
+}
+
+
+
+.buttons-grid button:active {
+
+transform: scale(0.9); /* Button press effect */
+
+}
+
+
+
+.buttons-grid button:hover {
+
+opacity: 0.8;
+
+}
+
+
+
+.buttons-grid button.zero {
+
+grid-column: span 2; /* Make "0" button wider */
+
+border-radius: 30px;
+
+}
+
+
+
+.buttons-grid button.clear { /* AC Button */
+
+color: var(--btn-ac-color);
+
+background-color: rgba(76, 175, 80, 0.1); /* Light background color */
+
+}
+
+
+
+.buttons-grid button.delete { /* Delete Button */
+
+color: var(--btn-ac-color);
+
+background-color: rgba(76, 175, 80, 0.1); /* Light background color */
+
+}
+
+
+
+.buttons-grid button.equal { /* Equal Button */
+
+color: #fff;
+
+background-color: var(--btn-equal-color);
+
+}
+
+
+
+.buttons-grid button.reverse { /* Reverse Sign Button */
+
+color: var(--btn-text-color);
+
+}
+
+
+
+/* Loading Screen Styles */
+
+#loading-screen {
+
+position: fixed;
+
+top: 0;
+
+left: 0;
+
+width: 100%;
+
+height: 100%;
+
+background-color: #121212;
+
+display: flex;
+
+justify-content: center;
+
+align-items: center;
+
+z-index: 1000;
+
+}
+
+
+
+.loading-content {
+
+text-align: center;
 
 color: white;
 
 }
 
-.calculator { margin-top: 20px; }
+
+
+.spinner {
+
+border: 5px solid rgba(255, 255, 255, 0.3);
+
+border-radius: 50%;
+
+border-top: 5px solid white;
+
+width: 50px;
+
+height: 50px;
+
+animation: spin 2s linear infinite;
+
+margin: 0 auto 20px;
+
+}
+
+
+
+@keyframes spin {
+
+0% { transform: rotate(0deg); }
+
+100% { transform: rotate(360deg); }
+
+}
