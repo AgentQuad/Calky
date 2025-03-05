@@ -4,60 +4,123 @@
 
 <head>
 
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Modern Calculator</title>
+    <title>Calky - Modern Calculator</title>
 
-<link rel="stylesheet" href="styles.css">
-
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="styles.css">
 
 </head>
 
 <body>
 
-<div id="security-screen">
 
-<h2>Enter Security Code</h2>
 
-<input type="password" id="security-code" placeholder="Enter code">
+    <!-- Loading Screen -->
 
-<button onclick="checkSecurity()">Unlock</button>
+    <div id="loading-screen">
 
-</div>
+        <div class="loading-content">
 
-<div id="calculator-app" class="hidden">
+            <div class="spinner"></div>
 
-<!-- Tabs -->
+            <p>Loading Calky...</p>
 
-<div class="tabs">
+        </div>
 
-<button onclick="showTab('basic')">Basic</button>
+    </div>
 
-<button onclick="showTab('scientific')">Scientific</button>
 
-<button onclick="showTab('graph')">Graph</button>
 
-</div>
+    <div id="calculator-app" class="light-mode hidden">
 
-<!-- Basic Calculator -->
+        <!-- Theme Toggle -->
 
-<div id="basic" class="calculator"></div>
+        <div class="theme-toggle">
 
-<!-- Scientific Calculator -->
+            <button id="toggle-theme">🌙</button>
 
-<div id="scientific" class="calculator hidden"></div>
+        </div>
 
-<!-- Graphing Calculator -->
 
-<div id="graph" class="calculator hidden"></div>
 
-</div>
+        <!-- Display -->
 
-<script src="script.js"></script>
+        <div class="display">
+
+            <div id="current-operation"></div>
+
+            <div id="result">0</div>
+
+        </div>
+
+
+
+        <!-- Buttons -->
+
+        <div class="buttons-grid">
+
+            <button class="clear" onclick="clearDisplay()">AC</button>
+
+            <button onclick="appendOperation('%')">%</button>
+
+            <button class="delete" onclick="deleteLast()">⌫</button>
+
+            <button onclick="appendOperation('/')">÷</button>
+
+
+
+            <button onclick="appendNumber('7')">7</button>
+
+            <button onclick="appendNumber('8')">8</button>
+
+            <button onclick="appendNumber('9')">9</button>
+
+            <button onclick="appendOperation('*')">×</button>
+
+
+
+            <button onclick="appendNumber('4')">4</button>
+
+            <button onclick="appendNumber('5')">5</button>
+
+            <button onclick="appendNumber('6')">6</button>
+
+            <button onclick="appendOperation('-')">−</button>
+
+
+
+            <button onclick="appendNumber('1')">1</button>
+
+            <button onclick="appendNumber('2')">2</button>
+
+            <button onclick="appendNumber('3')">3</button>
+
+            <button onclick="appendOperation('+')">+</button>
+
+
+
+            <button class="reverse" onclick="toggleSign()">+/-</button>
+
+            <button class="zero" onclick="appendNumber('0')">0</button>
+
+            <button onclick="appendNumber('.')">.</button>
+
+            <button class="equal" onclick="calculate()">=</button>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- JavaScript -->
+
+    <script src="script.js"></script>
 
 </body>
 
 </html>
+
