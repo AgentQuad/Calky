@@ -1,69 +1,69 @@
-body {
 
-font-family: Arial, sans-serif;
+// Show selected calculator tab
 
-text-align: center;
+function showTab(tabName) {
 
-background-color: #f4f4f4;
+document.querySelectorAll('.calculator').forEach(calc => calc.classList.add('hidden'));
 
-}
-
-
-
-.tabs {
-
-margin-bottom: 20px;
+document.getElementById(tabName).classList.remove('hidden');
 
 }
 
 
 
-button {
+// Append validated input to display
 
-margin: 5px;
+function appendToDisplay(value, type) {
 
-padding: 10px 20px;
+let display = document.getElementById(`display-${type}`);
 
-border: none;
+if (/^[0-9+\-*/().^√logsinco]*$/.test(value)) {
 
-cursor: pointer;
+display.value += value;
+
+}
 
 }
 
 
 
-.calculator {
+// Clear the display
 
-display: inline-block;
+function clearDisplay(type) {
 
-padding: 20px;
-
-background: white;
-
-border-radius: 10px;
-
-box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+document.getElementById(`display-${type}`).value = "";
 
 }
 
 
 
-.hidden {
+// Securely evaluate input
 
-display: none;
+function calculate(type) {
+
+let display = document.getElementById(`display-${type}`);
+
+try {
+
+let sanitizedInput = display.value.replace(/[^0-9+\-*/().^√logsinco]/g, '');
+
+let result = Function(`'use strict'; return (${sanitizedInput})`)();
+
+display.value = result;
+
+} catch (error) {
+
+alert("Invalid input!");
+
+}
 
 }
 
 
 
-#graphCanvas {
+// Disable right-click
 
-width: 100%;
+document.addEventListener("contextmenu", event => event.preventDefault());
 
-max-width: 400px;
-
-height: 300px;
-
-}
 
 
