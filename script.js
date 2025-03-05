@@ -1,6 +1,4 @@
 
-// Show selected calculator tab
-
 function showTab(tabName) {
 
 document.querySelectorAll('.calculator').forEach(calc => calc.classList.add('hidden'));
@@ -11,23 +9,13 @@ document.getElementById(tabName).classList.remove('hidden');
 
 
 
-// Append validated input to display
-
 function appendToDisplay(value, type) {
 
-let display = document.getElementById(`display-${type}`);
-
-if (/^[0-9+\-*/().^√logsinco]*$/.test(value)) {
-
-display.value += value;
-
-}
+document.getElementById(`display-${type}`).value += value;
 
 }
 
 
-
-// Clear the display
 
 function clearDisplay(type) {
 
@@ -37,23 +25,17 @@ document.getElementById(`display-${type}`).value = "";
 
 
 
-// Securely evaluate input
-
 function calculate(type) {
-
-let display = document.getElementById(`display-${type}`);
 
 try {
 
-let sanitizedInput = display.value.replace(/[^0-9+\-*/().^√logsinco]/g, '');
+let result = eval(document.getElementById(`display-${type}`).value);
 
-let result = Function(`'use strict'; return (${sanitizedInput})`)();
+document.getElementById(`display-${type}`).value = result;
 
-display.value = result;
+} catch {
 
-} catch (error) {
-
-alert("Invalid input!");
+alert("Invalid calculation");
 
 }
 
@@ -61,9 +43,80 @@ alert("Invalid input!");
 
 
 
-// Disable right-click
+// Graphing function
 
-document.addEventListener("contextmenu", event => event.preventDefault());
+function plotGraph() {
+
+let equation = document.getElementById("equation").value;
+
+let ctx = document.getElementById("graphCanvas").getContext("2d");
+
+let xValues = [], yValues = [];
 
 
+for (let x = -10; x <= 10; x += 0.5) {
+
+xValues.push(x);
+
+try {
+
+yValues.push(eval(equation.replace(/x/g, `(${x})`)));
+
+} catch {
+
+yValues.push(0);
+
+}
+
+}
+
+
+
+new Chart(ctx, {
+
+type: "line",
+
+data: {
+
+labels: xValues,
+
+datasets: [{
+
+label: "Graph",
+
+data: yValues,
+
+borderColor: "blue",
+
+fill: false
+
+}]
+
+}
+
+});
+
+}
+
+
+
+// Security Code Feature
+
+function checkSecurity() {
+
+let code = document.getElementById("security-code").value;
+
+if (code === "1234") { // Change this to your own security code
+
+document.getElementById("security-screen").classList.add("hidden");
+
+document.getElementById("calculator-app").classList.remove("hidden");
+
+} else {
+
+alert("Incorrect code!");
+
+}
+
+}
 
