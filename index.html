@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 
 <html lang="en">
@@ -8,28 +9,35 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Secure Calculator</title>
+<title>Calky - Smart Calculator</title>
 
 <link rel="stylesheet" href="styles.css">
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- For Graphing -->
-
-
-
-<!-- Security Headers -->
-
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net;">
-
-<meta http-equiv="X-Frame-Options" content="DENY"> <!-- Prevent Clickjacking -->
-
-<meta name="referrer" content="no-referrer"> <!-- Hide referrer info -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 </head>
 
 <body>
 
-<h1>Secure Calculator</h1>
 
+
+<!-- Security Screen -->
+
+<div id="security-screen">
+
+<h2>Enter Security Code</h2>
+
+<input type="password" id="security-code" placeholder="Enter code">
+
+<button onclick="checkSecurity()">Unlock</button>
+
+</div>
+
+
+
+<!-- Main Calculator -->
+
+<div id="calculator-app" class="hidden">
 
 <div class="tabs">
 
@@ -43,15 +51,23 @@
 
 
 
-<!-- Basic Calculator -->
+<!-- BASIC CALCULATOR -->
 
 <div id="basic" class="calculator">
 
 <input type="text" id="display-basic" disabled>
 
-<div class="buttons">
+<div class="buttons-grid">
 
 <button onclick="clearDisplay('basic')">C</button>
+
+<button onclick="appendToDisplay('(', 'basic')">(</button>
+
+<button onclick="appendToDisplay(')', 'basic')">)</button>
+
+<button onclick="appendToDisplay('/', 'basic')">÷</button>
+
+
 
 <button onclick="appendToDisplay('7', 'basic')">7</button>
 
@@ -59,7 +75,9 @@
 
 <button onclick="appendToDisplay('9', 'basic')">9</button>
 
-<button onclick="appendToDisplay('+', 'basic')">+</button>
+<button onclick="appendToDisplay('*', 'basic')">×</button>
+
+
 
 <button onclick="appendToDisplay('4', 'basic')">4</button>
 
@@ -69,21 +87,71 @@
 
 <button onclick="appendToDisplay('-', 'basic')">-</button>
 
+
+
 <button onclick="appendToDisplay('1', 'basic')">1</button>
 
 <button onclick="appendToDisplay('2', 'basic')">2</button>
 
 <button onclick="appendToDisplay('3', 'basic')">3</button>
 
-<button onclick="appendToDisplay('*', 'basic')">×</button>
+<button onclick="appendToDisplay('+', 'basic')">+</button>
 
-<button onclick="appendToDisplay('0', 'basic')">0</button>
+
+
+<button onclick="appendToDisplay('0', 'basic')" class="zero">0</button>
 
 <button onclick="appendToDisplay('.', 'basic')">.</button>
 
 <button onclick="calculate('basic')">=</button>
 
-<button onclick="appendToDisplay('/', 'basic')">÷</button>
+</div>
+
+</div>
+
+
+
+<!-- SCIENTIFIC CALCULATOR -->
+
+<div id="scientific" class="calculator hidden">
+
+<input type="text" id="display-scientific" disabled>
+
+<div class="buttons-grid">
+
+<button onclick="clearDisplay('scientific')">C</button>
+
+<button onclick="appendToDisplay('Math.sin(', 'scientific')">sin</button>
+
+<button onclick="appendToDisplay('Math.cos(', 'scientific')">cos</button>
+
+<button onclick="appendToDisplay('Math.tan(', 'scientific')">tan</button>
+
+
+
+<button onclick="appendToDisplay('Math.log(', 'scientific')">log</button>
+
+<button onclick="appendToDisplay('Math.sqrt(', 'scientific')">√</button>
+
+<button onclick="appendToDisplay('**', 'scientific')">^</button>
+
+<button onclick="calculate('scientific')">=</button>
+
+</div>
+
+</div>
+
+
+
+<!-- GRAPHING CALCULATOR -->
+
+<div id="graph" class="calculator hidden">
+
+<input type="text" id="equation" placeholder="Enter equation (e.g., x*x - 2*x + 1)">
+
+<button onclick="plotGraph()">Plot</button>
+
+<canvas id="graphCanvas"></canvas>
 
 </div>
 
@@ -96,3 +164,4 @@
 </body>
 
 </html>
+
