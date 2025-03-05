@@ -1,1 +1,98 @@
+<!DOCTYPE html>
 
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Secure Calculator</title>
+
+<link rel="stylesheet" href="styles.css">
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- For Graphing -->
+
+
+
+<!-- Security Headers -->
+
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net;">
+
+<meta http-equiv="X-Frame-Options" content="DENY"> <!-- Prevent Clickjacking -->
+
+<meta name="referrer" content="no-referrer"> <!-- Hide referrer info -->
+
+</head>
+
+<body>
+
+<h1>Secure Calculator</h1>
+
+
+<div class="tabs">
+
+<button onclick="showTab('basic')">Basic</button>
+
+<button onclick="showTab('scientific')">Scientific</button>
+
+<button onclick="showTab('graph')">Graph</button>
+
+</div>
+
+
+
+<!-- Basic Calculator -->
+
+<div id="basic" class="calculator">
+
+<input type="text" id="display-basic" disabled>
+
+<div class="buttons">
+
+<button onclick="clearDisplay('basic')">C</button>
+
+<button onclick="appendToDisplay('7', 'basic')">7</button>
+
+<button onclick="appendToDisplay('8', 'basic')">8</button>
+
+<button onclick="appendToDisplay('9', 'basic')">9</button>
+
+<button onclick="appendToDisplay('+', 'basic')">+</button>
+
+<button onclick="appendToDisplay('4', 'basic')">4</button>
+
+<button onclick="appendToDisplay('5', 'basic')">5</button>
+
+<button onclick="appendToDisplay('6', 'basic')">6</button>
+
+<button onclick="appendToDisplay('-', 'basic')">-</button>
+
+<button onclick="appendToDisplay('1', 'basic')">1</button>
+
+<button onclick="appendToDisplay('2', 'basic')">2</button>
+
+<button onclick="appendToDisplay('3', 'basic')">3</button>
+
+<button onclick="appendToDisplay('*', 'basic')">×</button>
+
+<button onclick="appendToDisplay('0', 'basic')">0</button>
+
+<button onclick="appendToDisplay('.', 'basic')">.</button>
+
+<button onclick="calculate('basic')">=</button>
+
+<button onclick="appendToDisplay('/', 'basic')">÷</button>
+
+</div>
+
+</div>
+
+
+
+<script src="script.js"></script>
+
+</body>
+
+</html>
